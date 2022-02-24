@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:fresco="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/sticker_row"
+    android:background="@color/background_dark"
+    android:orientation="vertical">
+
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sticker_item_simple"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="6dp"
+        android:scaleType="fitCenter" />
+
+</LinearLayout>

@@ -1,7 +1,7 @@
 /*
  * Copyright 2017 Keval Patel.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version Stickers.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -37,6 +37,7 @@ import com.kevalpatel2106.emoticongifkeyboard.internal.emoticon.EmoticonFragment
 import com.kevalpatel2106.emoticongifkeyboard.internal.emoticon.EmoticonSearchFragment;
 import com.kevalpatel2106.emoticongifkeyboard.internal.gif.GifFragment;
 import com.kevalpatel2106.emoticongifkeyboard.internal.gif.GifSearchFragment;
+import com.kevalpatel2106.emoticongifkeyboard.internal.sticker.StickerFragment;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -56,6 +57,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
     public static final String TAG_GIF_FRAGMENT = "tag_gif_fragment";
     private static final String TAG_EMOTICON_SEARCH_FRAGMENT = "tag_emoticon_search_fragment";
     private static final String TAG_GIF_SEARCH_FRAGMENT = "tag_gif_search_fragment";
+    private static final String TAG_STICKER_FRAGMENT = "tag_sticker_fragment";
 
     /**
      * Key for saved instance bundle.
@@ -73,6 +75,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
     private final GifSearchFragment mGifSearchFragment;
     @NonNull
     private final EmoticonSearchFragment mEmoticonSearchFragment;
+    @NonNull
+    private final StickerFragment mStickerFragment;
 
     /**
      * Listener to notify when emoticons selected.
@@ -88,6 +92,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
     private View mEmoticonTabBtn;
     private View mBackSpaceBtn;
     private View mRootView;
+    private View mStickerTabBtn;
 
     /**
      * Bool to indicate weather emoticon functionality is enabled or not?
@@ -118,6 +123,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
 
         mGifFragment = GifFragment.getNewInstance();
         mGifSearchFragment = GifSearchFragment.getNewInstance();
+
+        mStickerFragment = StickerFragment.newInstance();
     }
 
     /**
@@ -232,6 +239,16 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
             }
         });
 
+        //Setup Sticker tab button
+        mStickerTabBtn = view.findViewById(R.id.btn_sticker_tab);
+        mStickerTabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmoticonGIFKeyboardFragment.this.replaceFragment(mStickerFragment,TAG_STICKER_FRAGMENT);
+            }
+        });
+
+
         if (savedInstanceState != null) {   //Fragment reloaded from config changes,
             //noinspection ConstantConditions
             switch (savedInstanceState.getString(KEY_CURRENT_FRAGMENT)) {
@@ -246,6 +263,9 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
                     break;
                 case TAG_GIF_SEARCH_FRAGMENT:
                     replaceFragment(mGifSearchFragment, TAG_GIF_SEARCH_FRAGMENT);
+                    break;
+                case TAG_STICKER_FRAGMENT:
+                    replaceFragment(mStickerFragment,TAG_STICKER_FRAGMENT);
                     break;
             }
         } else {
@@ -265,8 +285,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
      * @param fragment New {@link Fragment} to replace
      * @param tag      Tag for the back stack entry
      */
-    private void replaceFragment(@NonNull Fragment fragment,
-                                 @FragmentBackStackTags String tag) {
+    private void replaceFragment(@NonNull Fragment fragment, @FragmentBackStackTags String tag) {
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.keyboard_fragment_container, fragment)
                 .addToBackStack(tag)
@@ -331,6 +350,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
 
                 mEmoticonTabBtn.setSelected(true);
                 mGifTabBtn.setSelected(!mEmoticonTabBtn.isSelected());
+                mStickerTabBtn.setSelected(false);
+
                 mBackSpaceBtn.setVisibility(View.VISIBLE);
                 break;
             case TAG_GIF_FRAGMENT:
@@ -338,7 +359,17 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
                 if (mBottomViewContainer != null) mBottomViewContainer.setVisibility(View.VISIBLE);
 
                 mEmoticonTabBtn.setSelected(false);
+                mStickerTabBtn.setSelected(false);
                 mGifTabBtn.setSelected(!mEmoticonTabBtn.isSelected());
+
+                mBackSpaceBtn.setVisibility(View.GONE);
+                break;
+            case TAG_STICKER_FRAGMENT:
+                if (mBottomViewContainer != null) mBottomViewContainer.setVisibility(View.VISIBLE);
+                mStickerTabBtn.setSelected(true);
+                mEmoticonTabBtn.setSelected(false);
+                mGifTabBtn.setSelected(false);
+
                 mBackSpaceBtn.setVisibility(View.GONE);
                 break;
             case TAG_EMOTICON_SEARCH_FRAGMENT:
@@ -368,6 +399,19 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
         mEmoticonSearchFragment.setEmoticonSelectListener(emoticonSelectListener);
     }
 
+
+    /**
+     * Set the {@link EmoticonSelectListener} to get notify whenever the emoticon is selected or deleted.
+     *
+     * @param gifSelectListener {@link EmoticonSelectListener}
+     * @see GifSelectListener
+     */
+    public void setGifSelectListener(@Nullable GifSelectListener gifSelectListener) {
+        mGifFragment.setGifSelectListener(gifSelectListener);
+        mGifSearchFragment.setGifSelectListener(gifSelectListener);
+    }
+
+
     /**
      * Set the GIF provider for for fetching the GIFs.
      *
@@ -392,16 +436,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
         mEmoticonSearchFragment.setEmoticonProvider(emoticonProvider);
     }
 
-    /**
-     * Set the {@link EmoticonSelectListener} to get notify whenever the emoticon is selected or deleted.
-     *
-     * @param gifSelectListener {@link EmoticonSelectListener}
-     * @see GifSelectListener
-     */
-    public void setGifSelectListener(@Nullable GifSelectListener gifSelectListener) {
-        mGifFragment.setGifSelectListener(gifSelectListener);
-        mGifSearchFragment.setGifSelectListener(gifSelectListener);
-    }
+
 
     /**
      * @return True if emoticons are enable for the keyboard.

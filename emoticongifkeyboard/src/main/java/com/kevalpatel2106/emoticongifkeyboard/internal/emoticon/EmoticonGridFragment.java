@@ -172,4 +172,5 @@ public final class EmoticonGridFragment extends Fragment implements AdapterView.
         //Save the emoticon to the recent list
         EmoticonRecentManager.getInstance(getActivity()).add(emoticon);
     }
+
 }

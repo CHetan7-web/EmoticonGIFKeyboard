@@ -32,8 +32,6 @@ android {
         minSdkVersion buidlConfig.min
         targetSdkVersion buidlConfig.target
 
-        versionCode 1
-        versionName "v" + libraryVersion
 
         consumerProguardFiles 'proguard-rules.pro', '../proguard-rules-remove-logs.pro'
     }
@@ -50,6 +48,15 @@ dependencies {
     implementation supportLib.appCompat
     implementation(otherLib.glide)
     implementation supportLib.annotations
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    def fresco_version = '2.5.0'
+    implementation "com.facebook.fresco:fresco:$fresco_version"
+    implementation "com.facebook.fresco:webpsupport:$fresco_version"
+    implementation "com.facebook.fresco:animated-webp:$fresco_version"
+    implementation "com.facebook.fresco:animated-base:$fresco_version"
+    //Fresco Image View for stickers webp
+//    implementation 'com.facebook.fresco:fresco:2.6.0'
 }
 
 apply from: '../gradle/install-bintray.gradle'

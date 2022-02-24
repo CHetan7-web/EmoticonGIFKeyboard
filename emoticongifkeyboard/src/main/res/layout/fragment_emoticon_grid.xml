@@ -25,6 +25,7 @@
     <GridView
         android:id="@+id/emoticon_list_grid"
         android:layout_width="match_parent"
+        android:numColumns="2"
         android:layout_height="match_parent"/>
 
     <!--2. Emoticon not found-->
