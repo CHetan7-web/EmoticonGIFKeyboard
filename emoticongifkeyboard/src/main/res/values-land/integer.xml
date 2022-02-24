@@ -18,4 +18,5 @@
 <resources>
     <integer name="emoticon_recycler_view_span_size">14</integer>
     <integer name="gif_recycler_view_span_size">3</integer>
+    <integer name="sticker_recycler_view_span_size">8</integer>
 </resources>

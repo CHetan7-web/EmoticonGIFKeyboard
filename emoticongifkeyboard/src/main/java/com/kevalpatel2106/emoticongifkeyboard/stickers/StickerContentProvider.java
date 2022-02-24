@@ -28,18 +28,16 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Log;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 //import androidx.annotation.NonNull;
 //import androidx.annotation.Nullable;
 
 //import com.kevalpatel2106.emoticongifkeyboard.BuildConfig;
-
-import com.kevalpatel2106.emoticongifkeyboard.BuildConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -327,4 +325,5 @@ public class StickerContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException("Not supported");
     }
+
 }

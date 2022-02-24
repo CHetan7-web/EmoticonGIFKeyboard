@@ -17,13 +17,14 @@
 package com.kevalpatel2106.emoticongifkeyboard;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
     private View mBackSpaceBtn;
     private View mRootView;
     private View mStickerTabBtn;
+
+    private View searchBtn;
 
     /**
      * Bool to indicate weather emoticon functionality is enabled or not?
@@ -194,6 +197,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
         //Set backspace button
         mBackSpaceBtn = view.findViewById(R.id.emojis_backspace);
         mBackSpaceBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view1) {
                 if (mEmoticonSelectListener != null) mEmoticonSelectListener.onBackSpace();
@@ -227,13 +231,13 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
         mGifTabBtn.setVisibility(isEmoticonsEnable() && isGIFsEnable() ? View.VISIBLE : View.GONE);
 
         //Setup the search button.
-        View searchBtn = view.findViewById(R.id.search_btn);
+        searchBtn = view.findViewById(R.id.search_btn);
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view14) {
                 if (mEmoticonTabBtn.isSelected()) {
                     EmoticonGIFKeyboardFragment.this.replaceFragment(mEmoticonSearchFragment, TAG_EMOTICON_SEARCH_FRAGMENT);
-                } else {
+                } else if (mGifTabBtn.isSelected()){
                     EmoticonGIFKeyboardFragment.this.replaceFragment(mGifSearchFragment, TAG_GIF_SEARCH_FRAGMENT);
                 }
             }
@@ -277,6 +281,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
             else
                 throw new IllegalStateException("At least one of emoticon or GIF should be active.");
         }
+
     }
 
     /**
@@ -352,6 +357,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
                 mGifTabBtn.setSelected(!mEmoticonTabBtn.isSelected());
                 mStickerTabBtn.setSelected(false);
 
+                searchBtn.setVisibility(View.GONE);
+
                 mBackSpaceBtn.setVisibility(View.VISIBLE);
                 break;
             case TAG_GIF_FRAGMENT:
@@ -362,6 +369,8 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
                 mStickerTabBtn.setSelected(false);
                 mGifTabBtn.setSelected(!mEmoticonTabBtn.isSelected());
 
+                searchBtn.setVisibility(View.GONE);
+
                 mBackSpaceBtn.setVisibility(View.GONE);
                 break;
             case TAG_STICKER_FRAGMENT:
@@ -370,6 +379,7 @@ public final class EmoticonGIFKeyboardFragment extends Fragment implements Fragm
                 mEmoticonTabBtn.setSelected(false);
                 mGifTabBtn.setSelected(false);
 
+                searchBtn.setVisibility(View.GONE);
                 mBackSpaceBtn.setVisibility(View.GONE);
                 break;
             case TAG_EMOTICON_SEARCH_FRAGMENT:

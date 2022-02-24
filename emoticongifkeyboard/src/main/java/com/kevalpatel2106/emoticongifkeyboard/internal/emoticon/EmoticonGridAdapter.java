@@ -17,8 +17,8 @@
 package com.kevalpatel2106.emoticongifkeyboard.internal.emoticon;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
@@ -120,4 +120,5 @@ final class EmoticonGridAdapter extends BaseAdapter {
         }
         return convertView;
     }
+
 }

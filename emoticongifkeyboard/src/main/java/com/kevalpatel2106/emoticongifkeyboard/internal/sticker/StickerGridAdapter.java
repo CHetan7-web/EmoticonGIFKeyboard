@@ -17,23 +17,23 @@
 package com.kevalpatel2106.emoticongifkeyboard.internal.sticker;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.integration.webp.decoder.WebpDrawable;
+import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation;
+
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.kevalpatel2106.emoticongifkeyboard.GlideApp;
 import com.kevalpatel2106.emoticongifkeyboard.R;
 import com.kevalpatel2106.emoticongifkeyboard.stickers.Sticker;
 import com.kevalpatel2106.emoticongifkeyboard.stickers.StickerPackLoader;
@@ -73,7 +73,17 @@ public class StickerGridAdapter extends RecyclerView.Adapter<StickerGridAdapter.
 
             final Uri stickerAssetUri = StickerPackLoader.getStickerAssetUri(identifier, sticker.getImageFileName());
 
-            stickerViewHolder.stickerView.setImageURI(stickerAssetUri);
+            Log.d("STICKER_FRAGEMENT", stickerAssetUri.getPath()+" : "+stickerAssetUri.toString());
+
+            Transformation<Bitmap> circleCrop = new CircleCrop();
+            GlideApp.with(mContext)
+//                    .asBitmap()
+                    .load(stickerAssetUri.toString())
+                    .optionalTransform(circleCrop)
+                    .optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(circleCrop))
+                    .into(stickerViewHolder.stickerView);
+
+//            stickerViewHolder.stickerView.setImageURI(stickerAssetUri);
 
 //            final SimpleDraweeView stickerImage = (SimpleDraweeView) LayoutInflater.from(mContext).inflate(R.layout.sticker_item, stickerViewHolder.stickerRow, false);
 

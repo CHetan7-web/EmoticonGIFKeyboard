@@ -16,7 +16,7 @@
 
 package com.kevalpatel2106.emoticongifkeyboard.internal.emoticon;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

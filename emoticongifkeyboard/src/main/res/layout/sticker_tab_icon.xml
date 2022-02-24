@@ -1,0 +1,9 @@
+
+<com.kevalpatel2106.emoticongifkeyboard.internal.EmoticonGifStickerImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sticker_item_simple"
+    android:layout_width="40dip"
+    android:layout_height="40dip"
+    android:padding="4dp"
+    android:scaleType="fitCenter">
+
+</com.kevalpatel2106.emoticongifkeyboard.internal.EmoticonGifStickerImageView>

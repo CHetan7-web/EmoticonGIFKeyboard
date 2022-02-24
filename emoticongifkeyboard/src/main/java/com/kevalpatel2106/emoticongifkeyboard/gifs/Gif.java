@@ -18,8 +18,8 @@ package com.kevalpatel2106.emoticongifkeyboard.gifs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Keval Patel on 18/08/17.

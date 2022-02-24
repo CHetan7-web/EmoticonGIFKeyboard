@@ -21,11 +21,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +41,7 @@ import com.kevalpatel2106.emoticongifkeyboard.emoticons.EmoticonSelectListener;
 import com.kevalpatel2106.emoticongifkeyboard.gifs.Gif;
 import com.kevalpatel2106.emoticongifkeyboard.gifs.GifProviderProtocol;
 import com.kevalpatel2106.emoticongifkeyboard.gifs.GifSelectListener;
-import com.kevalpatel2106.emoticongifkeyboard.internal.EmoticonGifImageView;
+import com.kevalpatel2106.emoticongifkeyboard.internal.EmoticonGifStickerImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,7 +166,7 @@ public final class GifSearchFragment extends Fragment implements GifSearchAdapte
         });
 
         //Set up button
-        EmoticonGifImageView backBtn = view.findViewById(R.id.up_arrow);
+        EmoticonGifStickerImageView backBtn = view.findViewById(R.id.up_arrow);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view12) {

@@ -17,18 +17,16 @@
 package com.kevalpatel2106.emoticongifkeyboard.internal.sticker;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ViewFlipper;
 
 import com.kevalpatel2106.emoticongifkeyboard.R;
@@ -115,7 +113,7 @@ public class StickerGridFragment extends Fragment implements AdapterView.OnItemC
 
             RecyclerView stickerRecyclerView = view.findViewById(R.id.sticker_recycler_list);
 
-            stickerRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+            stickerRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),getResources().getInteger(R.integer.sticker_recycler_view_span_size)));
             StickerGridAdapter stickerGridAdapter = new StickerGridAdapter(getActivity(),stickerList,identifier);
 
             stickerRecyclerView.setAdapter(stickerGridAdapter);

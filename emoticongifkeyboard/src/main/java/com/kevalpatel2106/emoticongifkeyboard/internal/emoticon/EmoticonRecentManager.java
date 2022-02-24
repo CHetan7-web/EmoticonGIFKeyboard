@@ -19,7 +19,7 @@ package com.kevalpatel2106.emoticongifkeyboard.internal.emoticon;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.kevalpatel2106.emoticongifkeyboard.emoticons.Emoticon;
 

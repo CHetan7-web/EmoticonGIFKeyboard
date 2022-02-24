@@ -17,22 +17,17 @@
 package com.kevalpatel2106.emoticongifkeyboard.internal.sticker;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -41,18 +36,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+//import com.facebook.drawee.view.SimpleDraweeView;
 import com.kevalpatel2106.emoticongifkeyboard.R;
+import com.kevalpatel2106.emoticongifkeyboard.internal.EmoticonGifStickerImageView;
 import com.kevalpatel2106.emoticongifkeyboard.stickers.StickerPack;
 import com.kevalpatel2106.emoticongifkeyboard.stickers.StickerPackLoader;
 //import com.kevalpatel2106.emoticongifkeyboard.stickers.StickerPack;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,12 +65,12 @@ public class StickerFragment extends Fragment {
     private String mParam2;
 
     LinearLayout stickerTabsLinearLayout;
-    SimpleDraweeView stickerTabItem;
+//    SimpleDraweeView stickerTabItem;
     ViewPager mViewPager;
 
     private LoadStickerListAsyncTask loadStickerListAsyncTask;
     private ArrayList<StickerPack> stickerPacksList;
-    private ArrayList<ImageView> stickerPackTabs;
+    private ArrayList<EmoticonGifStickerImageView> stickerPackTabs;
 
     public StickerFragment() {
         // Required empty public constructor
@@ -132,7 +124,7 @@ public class StickerFragment extends Fragment {
 
         for (StickerPack stickerPack : stickerPackList) {
 
-            ImageView iv = new ImageView(getContext());
+            EmoticonGifStickerImageView iv = new EmoticonGifStickerImageView(getContext());
             iv.setImageURI(StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.trayImageFile));
 
             iv.setClickable(true);
@@ -144,13 +136,20 @@ public class StickerFragment extends Fragment {
 
         mViewPager.setAdapter(new StickerCategoryViewPagerAdapter(getChildFragmentManager()));
 
-        for (ImageView imageView : stickerPackTabs) {
-            imageView.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0 ; i < stickerPackTabs.size();i++) {
+
+            final int finalI = i;
+            stickerPackTabs.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    for (ImageView imgV : stickerPackTabs)
+                    for (ImageView imgV : stickerPackTabs){
                         imgV.setSelected(false);
-                    view.setSelected(true);
+                        imgV.setBackgroundColor(Color.parseColor("#E3E7E8"));
+                    }
+                    stickerPackTabs.get(finalI).setSelected(true);
+                    stickerPackTabs.get(finalI).setBackgroundColor(Color.parseColor("#BBBCBD"));
+
+                    mViewPager.setCurrentItem(finalI);
                 }
             });
         }
@@ -163,9 +162,12 @@ public class StickerFragment extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
-                for (ImageView iv : stickerPackTabs)
+                for (ImageView iv : stickerPackTabs){
                     iv.setSelected(false);
+                    iv.setBackgroundColor(Color.parseColor("#E3E7E8"));
+                }
                 stickerPackTabs.get(i).setSelected(true);
+                stickerPackTabs.get(i).setBackgroundColor(Color.parseColor("#BBBCBD"));
             }
 
             @Override
@@ -176,6 +178,8 @@ public class StickerFragment extends Fragment {
 
         if (stickerPackTabs.size() > 0) {
             stickerPackTabs.get(0).setSelected(true);
+            stickerPackTabs.get(0).setBackgroundColor(Color.parseColor("#BBBCBD"));
+
             mViewPager.setCurrentItem(0);
         }
 

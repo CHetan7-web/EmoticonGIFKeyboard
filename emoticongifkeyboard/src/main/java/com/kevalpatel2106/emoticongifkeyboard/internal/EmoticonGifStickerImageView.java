@@ -20,10 +20,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -39,7 +39,7 @@ import com.kevalpatel2106.emoticongifkeyboard.R;
  * @author <a href='https://github.com/kevalpatel2106'>Kevalpatel2106</a>
  */
 
-public final class EmoticonGifImageView extends AppCompatImageView {
+public final class EmoticonGifStickerImageView extends AppCompatImageView {
 
     @ColorInt
     private int mAccentColor;
@@ -47,10 +47,14 @@ public final class EmoticonGifImageView extends AppCompatImageView {
     @ColorInt
     private int mAccentDarkColor;
 
-    public EmoticonGifImageView(@NonNull Context context,
-                                @Nullable AttributeSet attrs) {
+    public EmoticonGifStickerImageView(@NonNull Context context,
+                                       @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
+    }
+
+    public EmoticonGifStickerImageView(Context context) {
+        super(context);
     }
 
     /**
@@ -82,7 +86,7 @@ public final class EmoticonGifImageView extends AppCompatImageView {
         setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                EmoticonGifImageView.this.setColorFilter(motionEvent.getAction() == MotionEvent.ACTION_DOWN ?
+                EmoticonGifStickerImageView.this.setColorFilter(motionEvent.getAction() == MotionEvent.ACTION_DOWN ?
                         mAccentDarkColor : mAccentColor, PorterDuff.Mode.SRC_ATOP);
                 return false;
             }

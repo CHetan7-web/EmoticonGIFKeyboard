@@ -18,9 +18,9 @@ package com.kevalpatel2106.sample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -36,8 +36,6 @@ import com.kevalpatel2106.emoticongifkeyboard.widget.EmoticonEditText;
 import com.kevalpatel2106.emoticongifkeyboard.widget.EmoticonTextView;
 import com.kevalpatel2106.emoticonpack.android7.Android7EmoticonProvider;
 import com.kevalpatel2106.emoticonpack.android8.Android8EmoticonProvider;
-import com.kevalpatel2106.emoticonpack.ios.IosEmoticonProvider;
-import com.kevalpatel2106.emoticonpack.windows10.Windows10EmoticonProvider;
 import com.kevalpatel2106.gifpack.giphy.GiphyGifProvider;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final AppCompatImageView gifImageView = findViewById(R.id.selected_git_iv);
 
         //Set the emoticon text view.
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
           Set the custom emoticon icon provider. If you don't set any icon provider here, library
           will render system emoticons. Here we are setting iOS emoticons icon pack.
          */
-        textView.setEmoticonProvider(Android8EmoticonProvider.create());
+        textView.setEmoticonProvider(Android7EmoticonProvider.create());
 
 
         //Set the emoticon edit text.
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
           Set the custom emoticon icon provider. If you don't set any icon provider here, library
           will render system emoticons. Here we are setting Android 8.0 emoticons icon pack.
          */
-        editText.setEmoticonProvider(Android8EmoticonProvider.create());
+        editText.setEmoticonProvider(Android7EmoticonProvider.create());
 
 
         //Set emoticon configuration.
@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 editText.setText("");
             }
         });
+
     }
 
     @Override

@@ -18,11 +18,11 @@ package com.kevalpatel2106.emoticongifkeyboard.stickers;
 
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.JsonReader;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 //import androidx.annotation.NonNull;
 
 import java.io.IOException;

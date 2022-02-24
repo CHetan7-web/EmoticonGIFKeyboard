@@ -48,15 +48,23 @@ dependencies {
     implementation supportLib.appCompat
     implementation(otherLib.glide)
     implementation supportLib.annotations
-    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    def fresco_version = '2.5.0'
-    implementation "com.facebook.fresco:fresco:$fresco_version"
-    implementation "com.facebook.fresco:webpsupport:$fresco_version"
-    implementation "com.facebook.fresco:animated-webp:$fresco_version"
-    implementation "com.facebook.fresco:animated-base:$fresco_version"
-    //Fresco Image View for stickers webp
+//    def fresco_version = '2.5.0'
+//    implementation "com.facebook.fresco:fresco:$fresco_version"
+//    implementation "com.facebook.fresco:webpsupport:$fresco_version"
+//    implementation "com.facebook.fresco:animated-webp:$fresco_version"
+//    implementation "com.facebook.fresco:animated-base:$fresco_version"
+//    //Fresco Image View for stickers webp
 //    implementation 'com.facebook.fresco:fresco:2.6.0'
+
+    def GLIDE_VERSION = "4.12.0"
+// webpdecoder
+    implementation "com.github.zjupure:webpdecoder:2.0.${GLIDE_VERSION}"
+// glide 4.10.0+
+    implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
+
 }
 
 apply from: '../gradle/install-bintray.gradle'

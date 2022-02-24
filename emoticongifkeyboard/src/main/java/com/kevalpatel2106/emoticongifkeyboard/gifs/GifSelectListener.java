@@ -16,7 +16,7 @@
 
 package com.kevalpatel2106.emoticongifkeyboard.gifs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by Keval on 22-Aug-17.

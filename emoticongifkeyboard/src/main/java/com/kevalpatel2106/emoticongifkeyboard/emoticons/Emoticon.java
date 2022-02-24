@@ -18,8 +18,8 @@ package com.kevalpatel2106.emoticongifkeyboard.emoticons;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 /**
  * Emoticon POJO.

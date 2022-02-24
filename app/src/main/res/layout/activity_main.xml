@@ -40,7 +40,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/emoji_open_close_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -51,7 +51,7 @@
             android:tint="@android:color/white"
             tools:ignore="ContentDescription"/>
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/emoji_send_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -80,6 +80,7 @@
             android:background="@android:color/white"
             android:padding="10dp"
             app:emojiconSize="30sp"/>
+
     </RelativeLayout>
 
     <ScrollView
@@ -103,12 +104,14 @@
                 android:textColor="@android:color/white"
                 app:emojiconSize="30sp"/>
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/selected_git_iv"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:padding="10dp"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
+
     </ScrollView>
+
 </RelativeLayout>

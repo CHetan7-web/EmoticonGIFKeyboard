@@ -16,7 +16,7 @@
 
 package com.kevalpatel2106.emoticongifkeyboard.emoticons;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by Keval Patel on 20/08/17.

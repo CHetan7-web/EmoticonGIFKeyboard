@@ -38,7 +38,7 @@ android {
 
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         def contentProviderAuthority = applicationId + ".stickercontentprovider"
         // Creates a placeholder property to use in the manifest.
         manifestPlaceholders =
@@ -138,7 +138,7 @@ dependencies {
     implementation project(':emoticonpack-htc')
     implementation project(':emoticonpack-lg')
 
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
     implementation(otherLib.glide)
     implementation supportLib.appCompat
 

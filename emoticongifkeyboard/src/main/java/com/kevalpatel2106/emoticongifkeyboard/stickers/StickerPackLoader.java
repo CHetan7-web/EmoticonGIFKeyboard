@@ -21,8 +21,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
 
 //import androidx.annotation.NonNull;
@@ -50,8 +50,6 @@ import static com.kevalpatel2106.emoticongifkeyboard.stickers.StickerContentProv
 import static com.kevalpatel2106.emoticongifkeyboard.stickers.StickerContentProvider.STICKER_PACK_IDENTIFIER_IN_QUERY;
 import static com.kevalpatel2106.emoticongifkeyboard.stickers.StickerContentProvider.STICKER_PACK_NAME_IN_QUERY;
 import static com.kevalpatel2106.emoticongifkeyboard.stickers.StickerContentProvider.STICKER_PACK_PUBLISHER_IN_QUERY;
-
-import com.kevalpatel2106.emoticongifkeyboard.BuildConfig;
 
 public class StickerPackLoader {
 

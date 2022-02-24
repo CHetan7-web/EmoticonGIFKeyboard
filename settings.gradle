@@ -31,3 +31,5 @@ include ':app',
         ':emoticonpack-windows10',
         ':emoticonpack-windows8',
         ':emoticonpack-samsung'
+include ':emoticonpack-android7:upmrrd'
+include ':exp1'
